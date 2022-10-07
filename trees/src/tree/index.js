@@ -1,15 +1,39 @@
 import "./index.css";
 import AnimalTreeData from "./data.json";
 
+import { useState } from 'react'
+
 export default function AnimalTree() {
-  return <Tree>{buildAnimalNodes(AnimalTreeData, true)}</Tree>;
+  return <Tree><AnimalNodes animal={AnimalTreeData} isRoot></AnimalNodes></Tree>;
 }
 
-function buildAnimalNodes({ name, children }, isRoot) {
+function AnimalNodes({animal, isRoot}) {
+  const { name } = animal
+  const [children, setChildren] = useState(animal.children)
+
+  const onSubmit = (ev) => {
+    console.log(ev)
+    if (ev.key !== 'Enter') {
+      return
+    }
+
+    const animalName = ev.target.value
+    setChildren((currState = []) => {
+      const newState = [...currState]
+      newState.push({
+        name: animalName
+      })
+      return newState
+    })
+  }
+
   return (
     <TreeNode isRoot={isRoot}>
-      <span>{name}</span>
-      {children?.length ? children.map(child => buildAnimalNodes(child)) : null}
+      <div>
+        <span>{name}</span>
+        <input type="text" onKeyUp={onSubmit} />
+      </div>
+      {children?.length ? children.map(child => <AnimalNodes animal={child} key={child.name}></AnimalNodes>) : null}
     </TreeNode>
   );
 }
@@ -18,7 +42,7 @@ const PADDING_VALUE = 2;
 function TreeNode({ isRoot, children }) {
   return (
     <div
-      class="node"
+      className="node"
       style={{ paddingLeft: !isRoot ? `${PADDING_VALUE}rem` : 0 }}
     >
       {children}
