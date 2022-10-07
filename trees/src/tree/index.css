@@ -2,5 +2,12 @@
     background-color: #efefef;
     height: 100%;
     padding: 10px;
-    font-family: monospace
+    font-family: monospace;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.tree .node {
+    width: 100%;
 }

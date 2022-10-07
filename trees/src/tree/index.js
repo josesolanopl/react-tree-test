@@ -1,16 +1,38 @@
-import React, {useState, useEffect} from 'react';
-import './index.css'
+import "./index.css";
 
-export default function Tree() {
-    return (
-            <div className="tree">
-                mammals<br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cheetah <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;bear <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lion <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dog <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;elephant <br/>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ape <br/>
-            </div>
-    )
+export default function AnimalTree() {
+  return (
+    <Tree>
+      <TreeNode isRoot>
+        <span>mammals</span>
+        <TreeNode>
+          <span>cheetah</span>
+        </TreeNode>
+        <TreeNode>
+          <span>bear</span>
+          <TreeNode>
+            <span>lion</span>
+          </TreeNode>
+          <TreeNode>
+            <span>dog</span>
+            <TreeNode>
+              <span>elephant</span>
+            </TreeNode>
+          </TreeNode>
+        </TreeNode>
+        <TreeNode>
+          <span>ape</span>
+        </TreeNode>
+      </TreeNode>
+    </Tree>
+  );
+}
+
+const PADDING_VALUE = 2;
+function TreeNode({ isRoot, children }) {
+    return <div class="node" style={{paddingLeft: !isRoot ? `${PADDING_VALUE}rem` : 0}}>{children}</div>
+}
+
+function Tree({ children }) {
+  return <div className="tree">{children}</div>;
 }
