@@ -1,27 +1,36 @@
-{
-  "name": "mammals",
-  "children": [
-    {
-      "name": "cheetah"
-    },
-    {
-      "name": "bear",
-      "children": [
-        {
-          "name": "lion"
-        },
-        {
-          "name": "dog",
-          "children": [
-            {
-              "name": "elephant"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "name": "ape"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "isRoot": true,
+    "name": "mammals",
+    "children": [
+      7,2,6
+    ]
+  },
+  {
+    "id": 2,
+    "name": "bear",
+    "children": [3,4]
+  },
+  {
+    "id": 3,
+    "name": "lion"
+  },
+  {
+    "id": 4,
+    "name": "dog",
+    "children": [5]
+  },
+  {
+    "id": 5,
+    "name": "elephant"
+  },
+  {
+    "id": 6,
+    "name": "ape"
+  },
+  {
+    "id": 7,
+    "name": "cheetah"
+  }
+]
